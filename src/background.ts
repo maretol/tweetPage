@@ -15,11 +15,10 @@ chrome.browserAction.onClicked.addListener(clickListener);
 const openPostTab = (url: string, title: string) => {
     const postUrl = "https://nostter.app/post"
 
-    encodeURI(title) + "&url=" + url
     const message = createMessage(title, url)
     const parameters = {content: message}
     const paramString = new URLSearchParams(parameters).toString()
-    chrome.tabs.create({url: postUrl+paramString})
+    chrome.tabs.create({url: postUrl+"?"+paramString})
 };
 
 const createMessage = (title: string, url: string): string => {
@@ -28,16 +27,17 @@ const createMessage = (title: string, url: string): string => {
 
 const removeGetParameter = (origin: string): string => {
     let url = new URL(origin)
+    const protocol = url.protocol + "//"
     const host = url.host
     const path = url.pathname
     if(host.match(/amazon.co.jp/)){
         // Amazon は特殊な置き換えをする
-        return host + rewriteAmazonJPParameter(path)
+        return protocol + host + rewriteAmazonJPParameter(path)
     }else if(host.match(/www.youtube.com/)){
         // Youtube はビデオIDがパラメータにあるので拾ってくる
-        return host + path + getYoutubeVideoParameter(url.searchParams)
+        return protocol + host + path + getYoutubeVideoParameter(url.searchParams)
     }
-    return host + path
+    return protocol + host + path
 }
 
 const rewriteAmazonJPParameter = (path: string): string => {

@@ -1,6 +1,6 @@
 {
-    "name": "tweet this page",
-    "short_name": "Tweet",
+    "name": "post this page on nostter",
+    "short_name": "Post Nostter",
     "manifest_version": 2,
     "version": "1.0",
     "browser_action": {
