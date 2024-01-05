@@ -18,6 +18,17 @@ https://twitter.com/intent/tweet?text={encoded text}&url={encoded url}
 
 でツイートできる仕組みがあるのでそれを使う。よってOAuthとかToken保管みたいな面倒なやつは実装しない
 
+## Nostter
+
+Nosterクライアントの一つであるNostterにも対応した
+
+
+```
+https://nostter.app/post?content={url-encoded-text-here}
+```
+
+これにそのまま対応する。とりあえず nostter ブランチで対応
+
 # その他
 
 - URLのGetパラメータを排除する（長くなるので）
