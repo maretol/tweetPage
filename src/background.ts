@@ -10,7 +10,7 @@ const clickListener = (tab: chrome.tabs.Tab) => {
     }
 }
 
-chrome.browserAction.onClicked.addListener(clickListener);
+chrome.action.onClicked.addListener(clickListener);
 
 const openPostTab = (url: string, title: string) => {
     const postUrl = "https://nostter.app/post"
@@ -41,7 +41,12 @@ const removeGetParameter = (origin: string): string => {
 }
 
 const rewriteAmazonJPParameter = (path: string): string => {
-    return path.replace("gp", "dp").replace("product/", "")
+    const pathParams = path.split("/")
+    if(pathParams.length < 3) {
+        return "/" + path
+    }
+    const [dp, prodCode] = [pathParams[1], pathParams[2]]
+    return "/" + dp + "/" + prodCode
 }
 
 const getYoutubeVideoParameter = (params: URLSearchParams): string => {
