@@ -1,5 +1,5 @@
 {
-    "name": "Post current page for nostter",
+    "name": "Post for nostter",
     "short_name": "Post for nostter",
     "manifest_version": 3,
     "version": "0.0.1",
@@ -10,12 +10,6 @@
     "background": {
         "service_worker": "background.js"
     },
-    "content_scripts": [
-        {
-            "matches": ["http://*/*", "https://*/*"],
-            "js": ["main.js"]
-        }
-    ],
     "permissions": [
         "tabs"
     ],
